@@ -1,6 +1,6 @@
 # RexPayCSharp Library
 
-The RexPayCSharp library provides a convenient wrapper for integrating RexPayCSharp payments into your DotNet/C# applications.
+The # Rexpay.Net library provides a convenient wrapper for integrating # Rexpay.Net payments into your DotNet/C# applications.
 
 ## Getting Started
 
@@ -13,47 +13,50 @@ This library was written in .NET STANDARD for easy integration into your project
      -   In your Visual Studio project, right-click on the project in the Solution Explorer.
     -   Select "Manage NuGet Packages...".
     -   Switch to the "Browse" tab.
-    -   Search for "RexpayLibrary".
+    -   Search for "# Rexpay.Net".
     -   Install the latest version.
 2. NET CLI
    
 
-     dotnet add package RexpayLibrary --version 1.0.2
+ 
+
+    dotnet add package Rexpay.Net --version 1.0.0
+
 
  3. Package Manager
  
 
-    NuGet\Install-Package RexpayLibrary -Version 1.0.2
+    NuGet\Install-Package Rexpay.Net -Version 1.0.0
 
   4. Package Referece
- 
-    <PackageReference Include="RexpayLibrary" Version="1.0.2" />
+
+ <PackageReference Include="Rexpay.Net" Version="1.0.0" />
 
   5.  Packet Cli
-     paket add RexpayLibrary --version 1.0.2
+  paket add Rexpay.Net --version 1.0.0
 
   6.   Script & Ineteractive 
  
-     #r "nuget: RexpayLibrary, 1.0.2"
+     #r "nuget: Rexpay.Net, 1.0.0"
 
   7.  Cake 
 
-    // Install RexpayLibrary as a Cake Addin
-    #addin nuget:?package=RexpayLibrary&version=1.0.2
-    
-    // Install RexpayLibrary as a Cake Tool
-    #tool nuget:?package=RexpayLibrary&version=1.0.2
+    /// Install Rexpay.Net as a Cake Addin
+#addin nuget:?package=Rexpay.Net&version=1.0.0
+
+// Install Rexpay.Net as a Cake Tool
+#tool nuget:?package=Rexpay.Net&version=1.0.0
 
 
 # Usage
-add the IPayment  to your startup or program.cs class as a service container
+add the IRexPayService to your startup or program.cs class as a service container
 
-    e.g builder.Services.AddScoped<IPayment, Payment>();
-inject the interface IPayment in your project.
+    e.g builder.Services.AddScoped<IRexPayService, RexPayService>();
+inject the interface IRexPayService in your project.
 
     public classs Sample{
-     private readonly IPayment _payment;
-     public Sample(IPayment payment)
+     private readonly IRexPayService _payment;
+     public Sample(IRexPayService payment)
      {
 	     _payment = payment
      }
@@ -64,7 +67,8 @@ To create a payment, use the following method:
 initialize CreatePaymentRequestDto to build your request
 CreatePaymentRequestDto request = new CreatePaymentRequestDto();
 call the creatpament method and pass the necessary information.
-CreateRequestResponse res = _payment.createPayment(request, username, password);
+CreateRequestResponse res = _payment.createPayment(request, "DEMO_USERNAME", "SECRET API KEY");
+
 Replace the placeholders with your actual data. 
 For test purposes, use `"Test"`  as the mode and "production" for live.
 #### Example
@@ -85,8 +89,7 @@ For test purposes, use `"Test"`  as the mode and "production" for live.
          CallbackUrl = "https://example.com/callback"
      };
     
-     CreateRequestResponse response = await _payment.CreatePayment(request, "talk2phasahsyyahoocom",
-         "f0bedbea93df09264a4f09a6b38de6e9b924b6cb92bf4a0c07ce46f26f85");
+     CreateRequestResponse response = await _payment.CreatePayment(request, "DEMO_USERNAME", "SECRET API KEY");
 
   
   
@@ -111,14 +114,14 @@ To check the status of a transaction, use the following method:
 also initialize TransactionStatusDto to build your request
 TransactionStatusDto request = new TransactionStatusDto();
 call the transactionStatus method and pass the necessary information.
-TransactionStatusResponse res = _payment.transactionStatus(request, username, password);
+TransactionStatusResponse res = _payment.transactionStatus(request, "DEMO_USERNAME", "SECRET API KEY");
 
 
 ### Sample Requests and Responses
 
 #### Transaction Status Request
 
-    TransactionStatusResponse statusResponse = await _payment.GetTransactionStatus(transactionStatusDto, "talk2phasahsyyahoocom", "f0bedbea93df09264a4f09a6b38de6e9b924b6cb92bf4a0c07ce46f26f85");
+    TransactionStatusResponse statusResponse = await _payment.GetTransactionStatus(transactionStatusDto, "DEMO_USERNAME", "SECRET API KEY");
 
 #### Response:
 
