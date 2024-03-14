@@ -98,7 +98,6 @@ namespace RexpayLibrary
                     }
                     else
                     {
-
                         return new TransactionStatusResponse()
                         {
                             responseCode = "099",
